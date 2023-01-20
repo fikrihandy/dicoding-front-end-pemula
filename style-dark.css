@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #222831;
+}
+
 body, input, button {
     font-family: 'Open Sans', sans-serif;
 }
@@ -26,6 +30,7 @@ main {
     width: 80%;
     margin: 0 auto;
     padding: 16px;
+    background-color: #30475E;
 
 }
 
@@ -33,7 +38,7 @@ main {
     display: flex;
     flex-direction: column;
     padding: 16px;
-    border: 1px solid black;
+    border: 1px solid #DDDDDD;
     border-radius: 10px;
 }
 
@@ -43,7 +48,7 @@ main {
 
 .input_section > h2 {
     text-align: center;
-    color: cornflowerblue;
+    color: #DDDDDD;
 }
 
 .input_section > form > .input {
@@ -74,7 +79,7 @@ main {
 
 
 .input_section > form > .input > label {
-    color: cornflowerblue;
+    color: #DDDDDD;
     font-weight: bold;
 }
 
@@ -85,7 +90,7 @@ main {
 }
 
 .input_section > form > .input_inline > label {
-    color: cornflowerblue;
+    color: #DDDDDD;
     font-weight: bold;
     margin-right: 10px;
 }
@@ -96,12 +101,12 @@ main {
     flex-direction: column;
     align-items: center;
     padding: 16px;
-    border: 1px solid black;
+    border: 1px solid #DDDDDD;
     border-radius: 10px;
 }
 
 .search_section > h2 {
-    color: cornflowerblue;
+    color: #DDDDDD;
 }
 
 .search_section > form {
@@ -115,6 +120,7 @@ main {
 .search_section > form > label {
     display: flex;
     align-items: center;
+    color: #DDDDDD;
 }
 
 .search_section > form > input {
@@ -132,13 +138,13 @@ main {
 
 .book_shelf {
     margin: 16px 0 0 0;
-    border: 1px solid black;
+    border: 1px solid #DDDDDD;
     padding: 16px;
     border-radius: 10px;
 }
 
 .book_shelf > h2 {
-    color: cornflowerblue;
+    color: #DDDDDD;
 }
 
 .book_shelf > .book_list {
@@ -147,13 +153,14 @@ main {
 
 .book_shelf > .book_list > .book_item {
     padding: 8px 16px 16px 16px;
-    border: 1px solid black;
+    border: 1px solid #F05454;
     border-radius: 5px;
     margin: 10px 0;
 }
 
 .book_shelf > .book_list > .book_item > h3, p {
     margin: 8px 0;
+    color: #DDDDDD;
 }
 
 .book_shelf > .book_list > .book_item > .action > button {
@@ -166,10 +173,10 @@ main {
 
 .book_shelf > .book_list > .book_item > .action > .green {
     background-color: darkgreen;
-    color: white;
+    color: #DDDDDD;
 }
 
 .book_shelf > .book_list > .book_item > .action > .red {
     background-color: darkred;
-    color: white;
+    color: #DDDDDD;
 }

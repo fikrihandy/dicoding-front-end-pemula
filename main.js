@@ -67,46 +67,55 @@ function loadDataFromStorage() {
 function makeBook(bookObject) {
     const {id, title, author, year, isComplete} = bookObject;
 
-    const textTitle = document.createElement('h3');
-    textTitle.innerText = title;
+    const filter = document.getElementById('searchBookTitle').value.toLowerCase();
 
-    const textAuthor = document.createElement('p');
-    textAuthor.innerText = `Penulis: ${author}`;
+    if (title.toLowerCase().includes(filter)){
 
-    const textYear = document.createElement('p')
-    textYear.innerText = `Tahun: ${year}`;
+        const textTitle = document.createElement('h3');
+        textTitle.innerText = title;
 
-    const container = document.createElement('div');
-    container.classList.add('action');
+        const textAuthor = document.createElement('p');
+        textAuthor.innerText = `Penulis: ${author}`;
 
-    const article = document.createElement('article');
-    article.classList.add('book_item');
+        const textYear = document.createElement('p')
+        textYear.innerText = `Tahun: ${year}`;
 
-    const buttonDelete = document.createElement('button');
-    buttonDelete.classList.add('red');
-    buttonDelete.addEventListener('click', function () {
-        const deleteConfirmation = confirm(`Ingin mengapus buku ${title} '?`);
-        if (deleteConfirmation) {
-            removeBook(id);
-        }
-    })
-    buttonDelete.innerText = 'Hapus buku'
+        const container = document.createElement('div');
+        container.classList.add('action');
 
-    function button(bool) {
-        const button = document.createElement('button');
-        button.classList.add('green');
-        button.innerText = bool ? 'Belum selesai dibaca' : 'Selesai dibaca';
-        button.addEventListener('click', function () {
-            move(id, isComplete);
+        const article = document.createElement('article');
+        article.classList.add('book_item');
+
+        const buttonDelete = document.createElement('button');
+        buttonDelete.classList.add('red');
+        buttonDelete.addEventListener('click', function () {
+            const deleteConfirmation = confirm(`Ingin mengapus buku ${title} '?`);
+            if (deleteConfirmation) {
+                removeBook(id);
+            }
         })
-        container.append(button, buttonDelete);
+        buttonDelete.innerText = 'Hapus buku';
+
+        function button(bool) {
+            const button = document.createElement('button');
+            button.classList.add('green');
+            button.innerText = bool ? 'Belum selesai dibaca' : 'Selesai dibaca';
+            button.addEventListener('click', function () {
+                move(id, isComplete);
+            })
+            container.append(button, buttonDelete);
+        }
+
+        button(isComplete);
+        article.append(textTitle, textAuthor, textYear, container);
+        article.setAttribute('id', `book-${id}`);
+
+        return article;
+
+    } else {
+        const skipBook = document.createElement('article')
+        return skipBook.innerText = '';
     }
-
-    button(isComplete);
-    article.append(textTitle, textAuthor, textYear, container);
-    article.setAttribute('id', `book-${id}`);
-
-    return article;
 }
 
 function addBook() {
@@ -158,6 +167,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+
+    const submitForm = document.getElementById('searchBook');
+
+    submitForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        location.reload()
+    });
+});
+
 document.addEventListener(SAVED_EVENT, () => {
     console.log('Data berhasil di simpan.');
 });
@@ -189,3 +208,28 @@ function bookshelfAddButton() {
 }
 
 bookshelfAddButton();
+
+function darkModeConfig() {
+    const darkModeCheckbox = document.getElementById('darkMode');
+    if (darkModeCheckbox.checked !== true) {
+        localStorage.setItem("DARK-MODE", "no");
+    } else {
+        localStorage.setItem("DARK-MODE", "yes");
+    }
+}
+
+const darkModeSaved = localStorage.getItem("DARK-MODE");
+const checkboxDarkMode = document.getElementById('darkMode')
+checkboxDarkMode.addEventListener('change', ()=>{
+    location.reload();
+})
+
+if (darkModeSaved==null){
+    localStorage.setItem("DARK-MODE", "no");
+} else if (darkModeSaved==='yes'){
+    document.getElementById("darkMode").checked = true;
+    document.getElementById('my-css').setAttribute('href','style-dark.css')
+} else if (darkModeSaved==='no'){
+    document.getElementById("darkMode").checked = false;
+    document.getElementById('my-css').setAttribute('href','style.css')
+}
